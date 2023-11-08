@@ -3,20 +3,13 @@ package be.pxl.ja.lambda;
 public class Demo {
 
 	public static void main(String[] args) {
-		StringConverter upperCaseConverter = new StringConverter() {
-			@Override
-			public String convert(String original) {
-				return original.toUpperCase();
-			}
-		};
-		StringConverter reverseConverter = new StringConverter() {
-			@Override
-			public String convert(String original) {
-				StringBuilder temporary = new StringBuilder(original);
-				return temporary.reverse().toString();
-			}
-		};
+		// StringConverter upperCaseConverter = (original) ->  original.toUpperCase();
+		StringConverter upperCaseConverter = String::toUpperCase; // kortere versie van bovenstaande
 		System.out.println(upperCaseConverter.convert("LuchtHavenPerSOneeL"));
+		StringConverter reverseConverter = (original) -> {
+			StringBuilder builder = new StringBuilder(original);
+			return builder.reverse().toString();
+		};
 		System.out.println(reverseConverter.convert("LuchtHavenPerSOneeL"));
 	}
 }
